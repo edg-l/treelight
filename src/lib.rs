@@ -1,6 +1,28 @@
+//! # treelight
+//! A syntax highlighter for the web using [tree-sitter](https://github.com/tree-sitter/tree-sitter).
+//! 
+//! Work in progress.
+//! 
+//! ```rust
+//! let code = r#"
+//! use thiserror::Error;
+//! 
+//! #[derive(Error, Debug)]
+//! pub enum ResponseError {
+//!     #[error("api error {0}")]
+//!     ApiError(#[from] PaypalError),
+//!     #[error("http error {0}")]
+//!     HttpError(#[from] reqwest::Error)
+//! }
+//! "#;
+//! 
+//! let result = highlight_to_html(Language::Rust, code);
+//! println!("{}", result);
+//! ```
+
 use tree_sitter_highlight::{HighlightConfiguration, HighlightEvent, Highlighter};
 
-/// The listo of supported languages
+/// The list of supported languages
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Language {
     Rust,
@@ -10,7 +32,9 @@ pub enum Language {
     Java,
 }
 
-/// The recognized highlight names, map them to hex colors in a hashmap to create a theme.
+/// The recognized highlight names, when parsing the code to HTML, the spans will have this name
+/// within the class attribute, with the dots replaced by `-`, for example `punctuation.delimiter`
+/// will become `<span class="punctuation-delimiter">code here...</span>`.
 pub static HIGHLIGHT_NAMES: &[&str] = &[
     "attribute",
     "label",

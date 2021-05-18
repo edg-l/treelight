@@ -1,6 +1,6 @@
 [package]
 name = "treelight"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Edgar <git@edgarluque.com>"]
 edition = "2018"
 description = "A syntax highlighter for the web using tree-sitter."
@@ -8,7 +8,7 @@ readme = "README.md"
 documentation = "https://docs.rs/treelight"
 repository = "https://github.com/edg-l/treelight"
 license = "MIT"
-keywords = ["tree-sitter", "highlight", "syntax", "web"]
+keywords = ["tree-sitter", "highlight", "syntax", "web", "highlighting"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

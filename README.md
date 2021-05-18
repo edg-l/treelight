@@ -1,5 +1,5 @@
 # treelight
-A syntax highlighter for the web using tree-sitter.
+A syntax highlighter for the web using [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
 Work in progress.
 
