@@ -4,6 +4,8 @@
 //! Work in progress.
 //! 
 //! ```rust
+//! use treelight::*;
+//!
 //! let code = r#"
 //! use thiserror::Error;
 //! 
@@ -20,6 +22,7 @@
 //! println!("{}", result);
 //! ```
 
+use v_htmlescape::escape;
 use tree_sitter_highlight::{HighlightConfiguration, HighlightEvent, Highlighter};
 
 /// The list of supported languages
@@ -118,7 +121,8 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
     for event in highlights {
         match event.unwrap() {
             HighlightEvent::Source { start, end } => {
-                result.push_str(code.get(start..end).unwrap());
+                let code_span = escape(code.get(start..end).unwrap()).to_string();
+                result.push_str(&code_span);
             }
             HighlightEvent::HighlightStart(s) => {
                 let name = HIGHLIGHT_NAMES.get(s.0).unwrap().replace(".", "-");
@@ -144,6 +148,10 @@ mod tests {
 use tree_sitter::Parser;
 use tree_sitter_highlight::{HighlightConfiguration, HighlightEvent, Highlighter};
 use thiserror::Error;
+
+pub fn hello<T>(c: T) -> T {
+    c
+}
 
 #[derive(Error, Debug)]
 pub enum ResponseError {
