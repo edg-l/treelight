@@ -30,6 +30,9 @@ use v_htmlescape::escape;
 pub enum Language {
     Rust,
     Javascript,
+    JavascriptJsx,
+    Typescript,
+    TypescriptTsx,
     Python,
     Cpp,
     Java,
@@ -79,6 +82,20 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
                 "",
             )
             .unwrap(),
+            Language::Typescript => HighlightConfiguration::new(
+                tree_sitter_typescript::language_typescript(),
+                tree_sitter_typescript::HIGHLIGHT_QUERY,
+                "",
+                tree_sitter_typescript::LOCALS_QUERY,
+            )
+            .unwrap(),
+            Language::TypescriptTsx => HighlightConfiguration::new(
+                tree_sitter_typescript::language_tsx(),
+                tree_sitter_typescript::HIGHLIGHT_QUERY,
+                "",
+                tree_sitter_typescript::LOCALS_QUERY,
+            )
+            .unwrap(),
             Language::Java => {
                 unimplemented!(
                     "Until tree-sitter updates the dependency there is nothing we can do."
@@ -95,6 +112,13 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
             Language::Javascript => HighlightConfiguration::new(
                 tree_sitter_javascript::language(),
                 tree_sitter_javascript::HIGHLIGHT_QUERY,
+                tree_sitter_javascript::INJECTION_QUERY,
+                "",
+            )
+            .unwrap(),
+            Language::JavascriptJsx => HighlightConfiguration::new(
+                tree_sitter_javascript::language(),
+                tree_sitter_javascript::JSX_HIGHLIGHT_QUERY,
                 tree_sitter_javascript::INJECTION_QUERY,
                 "",
             )
