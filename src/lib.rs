@@ -1,4 +1,3 @@
-//! # treelight
 //! [![Version](https://img.shields.io/crates/v/treelight)](https://crates.io/crates/treelight)
 //! [![Downloads](https://img.shields.io/crates/d/treelight)](https://crates.io/crates/treelight)
 //! [![License](https://img.shields.io/crates/l/treelight)](https://crates.io/crates/treelight)
