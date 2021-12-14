@@ -13,11 +13,11 @@ keywords = ["tree-sitter", "highlight", "syntax", "web", "highlighting"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-v_htmlescape = "0.13.0"
-tree-sitter = "0.19.3"
-tree-sitter-rust = "0.19.0"
-tree-sitter-javascript = "0.19.0"
-tree-sitter-python = "0.19.0"
-tree-sitter-cpp = "0.19.0"
-tree-sitter-java = "0.19.0"
-tree-sitter-highlight = "0.19.2"
+v_htmlescape = "0.14.1"
+tree-sitter = "0.20.1"
+tree-sitter-rust = "0.20.0"
+tree-sitter-javascript = "0.20.0"
+tree-sitter-python = "0.19.1"
+tree-sitter-cpp = "0.20.0"
+#tree-sitter-java = "0.19.0"
+tree-sitter-highlight = "0.20.1"

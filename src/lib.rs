@@ -1,14 +1,14 @@
 //! # treelight
 //! A syntax highlighter for the web using [tree-sitter](https://github.com/tree-sitter/tree-sitter).
-//! 
+//!
 //! Work in progress.
-//! 
+//!
 //! ```rust
 //! use treelight::*;
 //!
 //! let code = r#"
 //! use thiserror::Error;
-//! 
+//!
 //! #[derive(Error, Debug)]
 //! pub enum ResponseError {
 //!     #[error("api error {0}")]
@@ -17,13 +17,13 @@
 //!     HttpError(#[from] reqwest::Error)
 //! }
 //! "#;
-//! 
+//!
 //! let result = highlight_to_html(Language::Rust, code);
 //! println!("{}", result);
 //! ```
 
-use v_htmlescape::escape;
 use tree_sitter_highlight::{HighlightConfiguration, HighlightEvent, Highlighter};
+use v_htmlescape::escape;
 
 /// The list of supported languages
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -79,13 +79,19 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
                 "",
             )
             .unwrap(),
-            Language::Java => HighlightConfiguration::new(
-                tree_sitter_java::language(),
-                tree_sitter_java::HIGHLIGHT_QUERY,
-                "",
-                "",
-            )
-            .unwrap(),
+            Language::Java => {
+                unimplemented!(
+                    "Until tree-sitter updates the dependency there is nothing we can do."
+                )
+                /*
+                    HighlightConfiguration::new(
+                        tree_sitter_java::language(),
+                        tree_sitter_java::HIGHLIGHT_QUERY,
+                        "",
+                        "",
+                    )
+                    .unwrap()*/
+            }
             Language::Javascript => HighlightConfiguration::new(
                 tree_sitter_javascript::language(),
                 tree_sitter_javascript::HIGHLIGHT_QUERY,
