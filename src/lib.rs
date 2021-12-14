@@ -70,7 +70,6 @@ pub static HIGHLIGHT_NAMES: &[&str] = &[
     "comment",
 ];
 
-/// If prepend class is none, then glowtree will be used.
 pub fn highlight_to_html(lang: Language, code: &str) -> String {
     let recognized_names: Vec<String> = HIGHLIGHT_NAMES.iter().cloned().map(String::from).collect();
 
