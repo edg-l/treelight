@@ -1,6 +1,6 @@
 [package]
 name = "treelight"
-version = "0.1.2"
+version = "0.2.0"
 authors = ["Edgar <git@edgarluque.com>"]
 edition = "2018"
 description = "A syntax highlighter for the web using tree-sitter."
