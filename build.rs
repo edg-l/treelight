@@ -1,14 +1,14 @@
 use std::path::Path;
 
 fn main() {
-    build_language("java", "./languages/tree-sitter-java", false, false, false);
-    build_language("rust", "./languages/tree-sitter-rust", true, false, true);
-    build_language("javascript", "./languages/tree-sitter-javascript", true, false, true);
-    build_language("typescript", "./languages/tree-sitter-typescript/typescript", true, false, true);
-    build_language("tsx", "./languages/tree-sitter-typescript/tsx", true, false, true);
-    build_language("cpp", "./languages/tree-sitter-cpp", true, true, false);
-    build_language("python", "./languages/tree-sitter-python", true, true, false);
-    build_language("php", "./languages/tree-sitter-php", true, true, false);
+    build_language("java", "languages/tree-sitter-java", false, false, false);
+    build_language("rust", "languages/tree-sitter-rust", true, false, true);
+    build_language("javascript", "languages/tree-sitter-javascript", true, false, true);
+    build_language("typescript", "languages/tree-sitter-typescript/typescript", true, false, true);
+    build_language("tsx", "languages/tree-sitter-typescript/tsx", true, false, true);
+    build_language("cpp", "languages/tree-sitter-cpp", true, true, false);
+    build_language("python", "languages/tree-sitter-python", true, true, false);
+    build_language("php", "languages/tree-sitter-php", true, true, false);
 }
 
 fn build_language(
