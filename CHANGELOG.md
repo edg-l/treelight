@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Features
 
 - Use self compiled libraries because oficial bindings are rarely updated
+- Add support for go, scala, haskell, ruby
 
 ### Miscellaneous Tasks
 
@@ -13,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Bump version to 0.3.0
 - Make submodules shallow
 - Add includes
+- Bump version to 0.3.1
 
 ## [0.2.0] - 2021-12-14
 
