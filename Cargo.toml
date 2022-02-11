@@ -21,10 +21,8 @@ include  = [
 	"languages/tree-sitter-typescript/tsx/grammar.js",
 	"languages/tree-sitter-typescript/tsx/src",
 	"languages/tree-sitter-typescript/common",
+	"src"
 ]
-
-[lib]
-path = "src/lib.rs"
 
 [dependencies]
 v_htmlescape = "0.14.1"
