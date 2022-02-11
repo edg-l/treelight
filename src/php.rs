@@ -14,26 +14,16 @@ pub fn language() -> Language {
 /// The content of the [`node-types.json`][] file for this grammar.
 ///
 /// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types
-pub const NODE_TYPES: &'static str = include_str!(concat!(
-    env!("CARGO_MANIFEST_DIR"),
-    "/languages/tree-sitter-php/src/node-types.json"
-));
+pub const NODE_TYPES: &'static str = include_str!("../languages/tree-sitter-php/src/node-types.json");
 
 // Uncomment these to include any queries that this grammar contains
 
-pub const HIGHLIGHTS_QUERY: &'static str = include_str!(concat!(
-    env!("CARGO_MANIFEST_DIR"),
-    "/languages/tree-sitter-php/queries/highlights.scm"
-));
-pub const INJECTIONS_QUERY: &'static str = include_str!(concat!(
-    env!("CARGO_MANIFEST_DIR"),
-    "/languages/tree-sitter-php/queries/injections.scm"
-));
+pub const HIGHLIGHTS_QUERY: &'static str =
+    include_str!("../languages/tree-sitter-php/queries/highlights.scm");
+pub const INJECTIONS_QUERY: &'static str =
+    include_str!("../languages/tree-sitter-php/queries/injections.scm");
 // pub const LOCALS_QUERY: &'static str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "../languages/tree-sitter-php/queries/locals.scm");
-pub const TAGS_QUERY: &'static str = include_str!(concat!(
-    env!("CARGO_MANIFEST_DIR"),
-    "/languages/tree-sitter-php/queries/tags.scm"
-));
+pub const TAGS_QUERY: &'static str = include_str!("../languages/tree-sitter-php/queries/tags.scm");
 
 #[cfg(test)]
 mod tests {
