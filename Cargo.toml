@@ -23,6 +23,9 @@ include  = [
 	"languages/tree-sitter-typescript/common",
 ]
 
+[lib]
+path = "src/lib.rs"
+
 [dependencies]
 v_htmlescape = "0.14.1"
 tree-sitter = "0.20.4"
