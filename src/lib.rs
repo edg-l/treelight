@@ -28,6 +28,14 @@
 use tree_sitter_highlight::{HighlightConfiguration, HighlightEvent, Highlighter};
 use v_htmlescape::escape;
 
+pub mod cpp;
+pub mod java;
+pub mod javascript;
+pub mod python;
+pub mod rust;
+pub mod typescript;
+pub mod php;
+
 /// The list of supported languages
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Language {
@@ -39,6 +47,7 @@ pub enum Language {
     Python,
     Cpp,
     Java,
+    Php,
 }
 
 /// The recognized highlight names, when parsing the code to HTML, the spans will have this name
@@ -77,68 +86,53 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
 
     let mut config = {
         match lang {
-            Language::Rust => HighlightConfiguration::new(
-                tree_sitter_rust::language(),
-                tree_sitter_rust::HIGHLIGHT_QUERY,
-                "",
-                "",
-            )
-            .unwrap(),
+            Language::Rust => {
+                HighlightConfiguration::new(rust::language(), rust::HIGHLIGHT_QUERY, "", "")
+                    .unwrap()
+            }
+            Language::Php=> {
+                HighlightConfiguration::new(php::language(), php::HIGHLIGHTS_QUERY, php::INJECTIONS_QUERY, "")
+                    .unwrap()
+            }
             Language::Typescript => HighlightConfiguration::new(
-                tree_sitter_typescript::language_typescript(),
-                tree_sitter_typescript::HIGHLIGHT_QUERY,
+                typescript::language_typescript(),
+                typescript::HIGHLIGHT_QUERY,
                 "",
-                tree_sitter_typescript::LOCALS_QUERY,
+                typescript::LOCALS_QUERY,
             )
             .unwrap(),
             Language::TypescriptTsx => HighlightConfiguration::new(
-                tree_sitter_typescript::language_tsx(),
-                tree_sitter_typescript::HIGHLIGHT_QUERY,
+                typescript::language_tsx(),
+                typescript::HIGHLIGHT_QUERY,
                 "",
-                tree_sitter_typescript::LOCALS_QUERY,
+                typescript::LOCALS_QUERY,
             )
             .unwrap(),
-            Language::Java => {
-                unimplemented!(
-                    "Until tree-sitter updates the dependency there is nothing we can do."
-                )
-                /*
-                    HighlightConfiguration::new(
-                        tree_sitter_java::language(),
-                        tree_sitter_java::HIGHLIGHT_QUERY,
-                        "",
-                        "",
-                    )
-                    .unwrap()*/
-            }
             Language::Javascript => HighlightConfiguration::new(
-                tree_sitter_javascript::language(),
-                tree_sitter_javascript::HIGHLIGHT_QUERY,
-                tree_sitter_javascript::INJECTION_QUERY,
+                javascript::language(),
+                javascript::HIGHLIGHT_QUERY,
+                javascript::INJECTION_QUERY,
                 "",
             )
             .unwrap(),
             Language::JavascriptJsx => HighlightConfiguration::new(
-                tree_sitter_javascript::language(),
-                tree_sitter_javascript::JSX_HIGHLIGHT_QUERY,
-                tree_sitter_javascript::INJECTION_QUERY,
+                javascript::language(),
+                javascript::JSX_HIGHLIGHT_QUERY,
+                javascript::INJECTION_QUERY,
                 "",
             )
             .unwrap(),
-            Language::Python => HighlightConfiguration::new(
-                tree_sitter_python::language(),
-                tree_sitter_python::HIGHLIGHT_QUERY,
-                "",
-                "",
-            )
-            .unwrap(),
-            Language::Cpp => HighlightConfiguration::new(
-                tree_sitter_cpp::language(),
-                tree_sitter_cpp::HIGHLIGHT_QUERY,
-                "",
-                "",
-            )
-            .unwrap(),
+            Language::Python => {
+                HighlightConfiguration::new(python::language(), python::HIGHLIGHT_QUERY, "", "")
+                    .unwrap()
+            }
+            Language::Cpp => {
+                HighlightConfiguration::new(cpp::language(), cpp::HIGHLIGHT_QUERY, "", "").unwrap()
+            }
+            Language::Java => {
+                HighlightConfiguration::new(java::language(), java::HIGHLIGHT_QUERY, "", "")
+                    .unwrap()
+            }
         }
     };
 
