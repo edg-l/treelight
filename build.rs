@@ -1,14 +1,42 @@
-use std::path::Path;
+use std::{env, path::Path};
 
 fn main() {
     build_language("java", "languages/tree-sitter-java", false, false, false);
     build_language("rust", "languages/tree-sitter-rust", true, false, true);
-    build_language("javascript", "languages/tree-sitter-javascript", true, false, true);
-    build_language("typescript", "languages/tree-sitter-typescript/typescript", true, false, true);
-    build_language("tsx", "languages/tree-sitter-typescript/tsx", true, false, true);
+    build_language(
+        "javascript",
+        "languages/tree-sitter-javascript",
+        true,
+        false,
+        true,
+    );
+    build_language(
+        "typescript",
+        "languages/tree-sitter-typescript/typescript",
+        true,
+        false,
+        true,
+    );
+    build_language(
+        "tsx",
+        "languages/tree-sitter-typescript/tsx",
+        true,
+        false,
+        true,
+    );
     build_language("cpp", "languages/tree-sitter-cpp", true, true, false);
     build_language("python", "languages/tree-sitter-python", true, true, false);
     build_language("php", "languages/tree-sitter-php", true, true, false);
+    build_language("go", "languages/tree-sitter-go", false, false, false);
+    build_language("scala", "languages/tree-sitter-scala", true, false, true);
+    build_language(
+        "haskell",
+        "languages/tree-sitter-haskell",
+        true,
+        false,
+        true,
+    );
+    build_language("ruby", "languages/tree-sitter-ruby", true, true, false);
 }
 
 fn build_language(
@@ -31,6 +59,7 @@ fn build_language(
     c_config.file(&parser_path);
     if is_parser_scanner {
         let scanner_path = src_dir.join("scanner.c");
+        println!("cargo:rerun-if-changed={}", scanner_path.to_str().unwrap());
         c_config.file(&scanner_path);
     }
     println!("cargo:rerun-if-changed={}", parser_path.to_str().unwrap());
@@ -41,6 +70,11 @@ fn build_language(
             let mut cpp_config = cc::Build::new();
             cpp_config.cpp(true);
             cpp_config.include(&src_dir);
+
+            if env::var("TARGET").unwrap() == "wasm32-wasi" {
+                cpp_config.flag_if_supported("-fno-exceptions");
+            }
+
             cpp_config
                 .flag_if_supported("-Wno-unused-parameter")
                 .flag_if_supported("-Wimplicit-fallthrough=0") // for php scanner.cc

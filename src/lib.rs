@@ -29,12 +29,16 @@ use tree_sitter_highlight::{HighlightConfiguration, HighlightEvent, Highlighter}
 use v_htmlescape::escape;
 
 pub mod cpp;
+pub mod go;
+pub mod haskell;
 pub mod java;
 pub mod javascript;
-pub mod python;
-pub mod rust;
-pub mod typescript;
 pub mod php;
+pub mod python;
+pub mod ruby;
+pub mod rust;
+pub mod scala;
+pub mod typescript;
 
 /// The list of supported languages
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -48,6 +52,10 @@ pub enum Language {
     Cpp,
     Java,
     Php,
+    Go,
+    Scala,
+    Haskell,
+    Ruby,
 }
 
 /// The recognized highlight names, when parsing the code to HTML, the spans will have this name
@@ -90,10 +98,31 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
                 HighlightConfiguration::new(rust::language(), rust::HIGHLIGHT_QUERY, "", "")
                     .unwrap()
             }
-            Language::Php=> {
-                HighlightConfiguration::new(php::language(), php::HIGHLIGHTS_QUERY, php::INJECTIONS_QUERY, "")
-                    .unwrap()
+            Language::Haskell => HighlightConfiguration::new(
+                haskell::language(),
+                haskell::HIGHLIGHT_QUERY,
+                "",
+                haskell::LOCALS_QUERY,
+            )
+            .unwrap(),
+            Language::Go => {
+                HighlightConfiguration::new(go::language(), go::HIGHLIGHT_QUERY, "", "").unwrap()
             }
+            Language::Ruby => HighlightConfiguration::new(
+                ruby::language(),
+                ruby::HIGHLIGHT_QUERY,
+                "",
+                ruby::LOCALS_QUERY,
+            )
+            .unwrap(),
+            Language::Scala => HighlightConfiguration::new(scala::language(), "", "", "").unwrap(),
+            Language::Php => HighlightConfiguration::new(
+                php::language(),
+                php::HIGHLIGHTS_QUERY,
+                php::INJECTIONS_QUERY,
+                "",
+            )
+            .unwrap(),
             Language::Typescript => HighlightConfiguration::new(
                 typescript::language_typescript(),
                 typescript::HIGHLIGHT_QUERY,
