@@ -33,9 +33,12 @@
 [submodule "languages/tree-sitter-go"]
 	path = languages/tree-sitter-go
 	url = git@github.com:tree-sitter/tree-sitter-go.git
+	shallow = true
 [submodule "languages/tree-sitter-haskell"]
 	path = languages/tree-sitter-haskell
 	url = git@github.com:tree-sitter/tree-sitter-haskell.git
+	shallow = true
 [submodule "languages/tree-sitter-ruby"]
 	path = languages/tree-sitter-ruby
 	url = git@github.com:tree-sitter/tree-sitter-ruby.git
+	shallow = true
