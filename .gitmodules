@@ -45,15 +45,20 @@
 [submodule "languages/tree-sitter-julia"]
 	path = languages/tree-sitter-julia
 	url = git@github.com:tree-sitter/tree-sitter-julia.git
+	shallow = true
 [submodule "languages/tree-sitter-json"]
 	path = languages/tree-sitter-json
 	url = git@github.com:tree-sitter/tree-sitter-json.git
+	shallow = true
 [submodule "languages/tree-sitter-c-sharp"]
 	path = languages/tree-sitter-c-sharp
 	url = git@github.com:tree-sitter/tree-sitter-c-sharp.git
+	shallow = true
 [submodule "languages/tree-sitter-c"]
 	path = languages/tree-sitter-c
 	url = git@github.com:tree-sitter/tree-sitter-c.git
+	shallow = true
 [submodule "languages/tree-sitter-bash"]
 	path = languages/tree-sitter-bash
 	url = git@github.com:tree-sitter/tree-sitter-bash.git
+	shallow = true
