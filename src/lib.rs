@@ -28,11 +28,15 @@
 use tree_sitter_highlight::{HighlightConfiguration, HighlightEvent, Highlighter};
 use v_htmlescape::escape;
 
+pub mod c;
+pub mod c_sharp;
 pub mod cpp;
 pub mod go;
 pub mod haskell;
 pub mod java;
 pub mod javascript;
+pub mod json;
+pub mod julia;
 pub mod php;
 pub mod python;
 pub mod ruby;
@@ -56,6 +60,10 @@ pub enum Language {
     Scala,
     Haskell,
     Ruby,
+    Julia,
+    Json,
+    CSharp,
+    C,
 }
 
 /// The recognized highlight names, when parsing the code to HTML, the spans will have this name
@@ -158,9 +166,21 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
             Language::Cpp => {
                 HighlightConfiguration::new(cpp::language(), cpp::HIGHLIGHT_QUERY, "", "").unwrap()
             }
+            Language::Julia => HighlightConfiguration::new(julia::language(), "", "", "").unwrap(),
+            Language::Json => {
+                HighlightConfiguration::new(json::language(), json::HIGHLIGHT_QUERY, "", "")
+                    .unwrap()
+            }
             Language::Java => {
                 HighlightConfiguration::new(java::language(), java::HIGHLIGHT_QUERY, "", "")
                     .unwrap()
+            }
+            Language::CSharp => {
+                HighlightConfiguration::new(c_sharp::language(), c_sharp::HIGHLIGHT_QUERY, "", "")
+                    .unwrap()
+            }
+            Language::C => {
+                HighlightConfiguration::new(c::language(), c::HIGHLIGHT_QUERY, "", "").unwrap()
             }
         }
     };
