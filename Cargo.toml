@@ -25,9 +25,9 @@ include  = [
 ]
 
 [dependencies]
-v_htmlescape = "0.14.1"
-tree-sitter = "0.20.4"
+v_htmlescape = "0.15.8"
+tree-sitter = "0.20.9"
 tree-sitter-highlight = "0.20.1"
 
 [build-dependencies]
-cc = "1.0.72"
+cc = "1.0.73"
