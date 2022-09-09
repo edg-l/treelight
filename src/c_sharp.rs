@@ -12,7 +12,7 @@ pub fn language() -> Language {
 }
 
 /// The source of the C# tree-sitter grammar description.
-pub const GRAMMAR: &'static str = include_str!("../languages/tree-sitter-json/grammar.js");
+pub const GRAMMAR: &'static str = include_str!("../languages/tree-sitter-c-sharp/grammar.js");
 
 /// The content of the [`node-types.json`][] file for this grammar.
 ///

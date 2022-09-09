@@ -3,6 +3,7 @@ use std::{env, path::Path};
 fn main() {
     build_language("java", "languages/tree-sitter-java", false, false, false);
     build_language("julia", "languages/tree-sitter-julia", true, false, true);
+    build_language("bash", "languages/tree-sitter-bash", true, true, false);
     build_language("json", "languages/tree-sitter-json", false, false, false);
     build_language("c", "languages/tree-sitter-c", false, false, false);
     build_language("c-sharp", "languages/tree-sitter-c-sharp", true, false, true);

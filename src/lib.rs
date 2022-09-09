@@ -43,6 +43,7 @@ pub mod ruby;
 pub mod rust;
 pub mod scala;
 pub mod typescript;
+pub mod bash;
 
 /// The list of supported languages
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -64,6 +65,7 @@ pub enum Language {
     Json,
     CSharp,
     C,
+    Bash,
 }
 
 /// The recognized highlight names, when parsing the code to HTML, the spans will have this name
@@ -104,6 +106,10 @@ pub fn highlight_to_html(lang: Language, code: &str) -> String {
         match lang {
             Language::Rust => {
                 HighlightConfiguration::new(rust::language(), rust::HIGHLIGHT_QUERY, "", "")
+                    .unwrap()
+            }
+            Language::Bash => {
+                HighlightConfiguration::new(bash::language(), bash::HIGHLIGHT_QUERY, "", "")
                     .unwrap()
             }
             Language::Haskell => HighlightConfiguration::new(

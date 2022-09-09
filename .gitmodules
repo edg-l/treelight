@@ -54,3 +54,6 @@
 [submodule "languages/tree-sitter-c"]
 	path = languages/tree-sitter-c
 	url = git@github.com:tree-sitter/tree-sitter-c.git
+[submodule "languages/tree-sitter-bash"]
+	path = languages/tree-sitter-bash
+	url = git@github.com:tree-sitter/tree-sitter-bash.git
